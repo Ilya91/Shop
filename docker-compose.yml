@@ -1,0 +1,80 @@
+version: '3.7'
+services:
+    nginx:
+        build:
+            context: app/docker
+            dockerfile: development/nginx/Dockerfile
+        volumes:
+            - ./app:/app
+        depends_on:
+            - php-fpm
+        ports:
+            - "8080:80"
+    php-fpm:
+        build:
+            context: app/docker
+            dockerfile: development/php-fpm/Dockerfile
+        environment:
+            APP_ENV: dev
+            APP_DEBUG: 1
+            PHP_IDE_CONFIG: serverName=app
+            DB_HOST: postgres
+            DB_USER: app
+            DB_PASSWORD: app
+            DB_NAME: app
+        volumes:
+            - ./app:/app
+        depends_on:
+            - postgres
+            - redis
+
+    php-cli:
+        build:
+            context: app/docker
+            dockerfile: development/php-cli/Dockerfile
+        volumes:
+            - ./app:/app
+            - composer:/root/.composer/cache
+        depends_on:
+            - postgres
+            - redis
+
+        environment:
+            APP_ENV: dev
+            APP_DEBUG: 1
+            DB_HOST: postgres
+            DB_USER: app
+            DB_PASSWORD: app
+            DB_NAME: app
+
+    postgres:
+        image: postgres:12.2-alpine
+        volumes:
+            - postgres:/var/lib/postgresql/data
+        environment:
+            POSTGRES_USER: app
+            POSTGRES_PASSWORD: app
+            POSTGRES_DB: app
+        ports:
+            - "54321:5432"
+    redis:
+        image: redis:5.0-alpine
+        volumes:
+            - redis:/data
+        command:
+            - 'redis-server'
+            - '--databases 2'
+            - '--save 900 1'
+            - '--save 300 10'
+            - '--save 60 10000'
+            - '--requirepass secret'
+    node:
+        image: node:12.7-alpine
+        volumes:
+            - ./app:/app
+        working_dir: /app
+
+volumes:
+    postgres:
+    redis:
+    composer:
