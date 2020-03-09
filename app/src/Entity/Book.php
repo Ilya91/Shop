@@ -3,14 +3,24 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Carbon\Carbon;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     collectionOperations={"get", "post"},
+ *     itemOperations={"get"={},
+ *     "put",
+ *     "delete"}
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
  */
 class Book
 {
+    public function __construct()
+    {
+        $this->createdAt = new \DateTimeImmutable();
+    }
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -89,11 +99,9 @@ class Book
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function getCreatedAtAgo(): string
     {
-        $this->createdAt = $createdAt;
-
-        return $this;
+        return Carbon::instance($this->getCreatedAt())->diffForHumans();
     }
 
     public function getIsPublished(): ?bool
