@@ -5,13 +5,16 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Carbon\Carbon;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
  *     collectionOperations={"get", "post"},
  *     itemOperations={"get"={},
  *     "put",
- *     "delete"}
+ *     "delete"},
+ *     normalizationContext={"groups"={"book:read"}, "swagger_definition_name"="Read"},
+ *     denormalizationContext={"groups"={"book:write"}, "swagger_definition_name"="Write"}
  * )
  * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
  */
@@ -30,16 +33,19 @@ class Book
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"book:read", "book:write"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"book:read", "book:write"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"book:read", "book:write"})
      */
     private $price;
 
@@ -51,7 +57,7 @@ class Book
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isPublished;
+    private $isPublished = false;
 
     public function getId(): ?int
     {
@@ -99,6 +105,9 @@ class Book
         return $this->createdAt;
     }
 
+    /**
+     * @Groups("book:read")
+     */
     public function getCreatedAtAgo(): string
     {
         return Carbon::instance($this->getCreatedAt())->diffForHumans();
