@@ -136,6 +136,6 @@ class Book
         if (strlen($this->description) < 40) {
             return $this->description;
         }
-        return substr($this->description, 0, 40).'...';
+        return substr($this->description, 0, 40) . '...';
     }
 }

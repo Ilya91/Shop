@@ -176,6 +176,9 @@
     "ocramius/proxy-manager": {
         "version": "2.7.0"
     },
+    "overtrue/phplint": {
+        "version": "1.2.1"
+    },
     "php": {
         "version": "7.4"
     },
@@ -216,6 +219,18 @@
         },
         "files": [
             "config/packages/sensio_framework_extra.yaml"
+        ]
+    },
+    "squizlabs/php_codesniffer": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "0dc9cceda799fd3a08b96987e176a261028a3709"
+        },
+        "files": [
+            "phpcs.xml.dist"
         ]
     },
     "symfony/asset": {
