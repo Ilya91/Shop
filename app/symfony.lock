@@ -1,4 +1,10 @@
 {
+    "amphp/amp": {
+        "version": "v2.4.1"
+    },
+    "amphp/byte-stream": {
+        "version": "v1.7.2"
+    },
     "api-platform/api-pack": {
         "version": "v1.2.1"
     },
@@ -24,6 +30,12 @@
     },
     "behat/transliterator": {
         "version": "v1.3.0"
+    },
+    "composer/semver": {
+        "version": "1.5.1"
+    },
+    "composer/xdebug-handler": {
+        "version": "1.4.1"
     },
     "container-interop/container-interop": {
         "version": "1.2.0"
@@ -134,6 +146,12 @@
     "egulias/email-validator": {
         "version": "2.1.17"
     },
+    "felixfbecker/advanced-json-rpc": {
+        "version": "v3.1.1"
+    },
+    "felixfbecker/language-server-protocol": {
+        "version": "v1.4.0"
+    },
     "fig/link-util": {
         "version": "1.1.0"
     },
@@ -167,6 +185,9 @@
     "nesbot/carbon": {
         "version": "2.31.0"
     },
+    "netresearch/jsonmapper": {
+        "version": "v1.6.0"
+    },
     "nikic/php-parser": {
         "version": "v4.3.0"
     },
@@ -175,6 +196,9 @@
     },
     "ocramius/proxy-manager": {
         "version": "2.7.0"
+    },
+    "openlss/lib-array2xml": {
+        "version": "1.0.0"
     },
     "overtrue/phplint": {
         "version": "1.2.1"
@@ -208,6 +232,9 @@
     },
     "roave/security-advisories": {
         "version": "dev-master"
+    },
+    "sebastian/diff": {
+        "version": "4.0.0"
     },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
@@ -603,11 +630,20 @@
     "twig/twig": {
         "version": "v3.0.3"
     },
+    "vimeo/psalm": {
+        "version": "3.9.5"
+    },
     "webimpress/safe-writer": {
         "version": "2.0.0"
     },
     "webmozart/assert": {
         "version": "1.7.0"
+    },
+    "webmozart/glob": {
+        "version": "4.1.0"
+    },
+    "webmozart/path-util": {
+        "version": "2.3.0"
     },
     "willdurand/negotiation": {
         "version": "v2.3.1"

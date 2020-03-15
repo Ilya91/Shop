@@ -70,3 +70,6 @@ test-unit-coverage:
 lint:
 	docker-compose run --rm php-cli composer lint
 	docker-compose run --rm php-cli composer cs-check
+
+analyze:
+	docker-compose run --rm php-cli composer psalm

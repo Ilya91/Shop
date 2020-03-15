@@ -31,7 +31,8 @@
         "symfony/twig-pack": "*",
         "symfony/validator": "*",
         "symfony/web-link": "*",
-        "symfony/yaml": "*"
+        "symfony/yaml": "*",
+        "vimeo/psalm": "^3.9"
     },
     "require-dev": {
         "behat/behat": "^3.6",
@@ -82,7 +83,8 @@
         ],
         "lint" : "phplint",
         "cs-check": "phpcs",
-        "cs-fix": "phpcbf"
+        "cs-fix": "phpcbf",
+        "psalm": "psalm"
     },
     "conflict": {
         "symfony/symfony": "*"
