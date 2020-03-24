@@ -19,7 +19,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     "put",
  *     "delete"},
  *     normalizationContext={"groups"={"book:read"}, "swagger_definition_name"="Read"},
- *     denormalizationContext={"groups"={"book:write"}, "swagger_definition_name"="Write"}
+ *     denormalizationContext={"groups"={"book:write"}, "swagger_definition_name"="Write"},
+ *     attributes={
+ *          "pagination_items_per_page"=10,
+ *          "formats"={"jsonld", "json", "html", "csv"={"text/csv"}}
+ *     }
  * )
  * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
  * @ApiFilter(BooleanFilter::class, properties={"isPublished"})
