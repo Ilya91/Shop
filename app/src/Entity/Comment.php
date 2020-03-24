@@ -73,6 +73,7 @@ class Comment
 
     /**
      * @param User $author
+     * @return Comment
      */
     public function setAuthor(User $author): self
     {

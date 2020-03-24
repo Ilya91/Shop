@@ -105,6 +105,7 @@ class BlogPost
 
     /**
      * @param User $author
+     * @return BlogPost
      */
     public function setAuthor(User $author): self
     {
