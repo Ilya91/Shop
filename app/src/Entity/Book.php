@@ -11,6 +11,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Carbon\Carbon;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource(
@@ -48,18 +49,26 @@ class Book
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"book:read", "book:write"})
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *     min=2,
+     *     max=50,
+     *     maxMessage="Describe your title in 50 chars or less"
+     * )
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
      * @Groups({"book:read", "book:write"})
+     * @Assert\NotBlank()
      */
     private $description;
 
     /**
      * @ORM\Column(type="integer")
      * @Groups({"book:read", "book:write"})
+     * @Assert\NotBlank()
      */
     private $price;
 
