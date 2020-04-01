@@ -86,7 +86,7 @@ services:
     node:
         image: node:12.7-alpine
         volumes:
-            - ./frontend/public:/app
+            - ./frontend/my-app:/app
         working_dir: /app
 
 volumes:
