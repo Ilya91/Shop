@@ -22,7 +22,7 @@ docker-pull:
 docker-build:
 	docker-compose build
 
-init: composer-install assets-install oauth-keys wait-db migrations fixtures ready
+init: composer-install assets-install oauth-keys wait-db migrations fixtures ready assets-dev
 
 clear:
 	docker run --rm -v ${PWD}/app:/app --workdir=/app alpine rm -f .ready
@@ -53,7 +53,7 @@ ready:
 	docker run --rm -v ${PWD}/app:/app --workdir=/app alpine touch .ready
 
 assets-dev:
-	docker-compose run --rm node npm run dev
+	docker-compose run --rm node npm run build
 
 test:
 	docker-compose run --rm php-cli php bin/phpunit
