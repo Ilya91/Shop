@@ -13,10 +13,9 @@ services:
 
     frontend:
         build:
-            context: frontend/docker
-            dockerfile: development/nginx/Dockerfile
-        volumes:
-            - ./frontend:/app
+            context: frontend/docker/development/nginx
+        depends_on:
+            - frontend-node
     api:
         build:
             context: app/docker
@@ -84,10 +83,19 @@ services:
             - '--save 60 10000'
             - '--requirepass secret'
     node:
-        image: node:12.7-alpine
+        build:
+            context: frontend/docker/development/node
         volumes:
             - ./frontend/my-app:/app
         working_dir: /app
+
+    frontend-node:
+        build:
+            context: frontend/docker/development/node
+        volumes:
+            - ./frontend/my-app:/app
+        command: sh -c "until [ -f .ready ] ; do sleep 1 ; done && yarn start"
+        tty: true
 
 volumes:
     postgres:

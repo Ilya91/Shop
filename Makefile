@@ -1,7 +1,7 @@
 up: docker-up
 down: docker-down
 restart: docker-down docker-up
-init: docker-down-clear clear docker-pull docker-build docker-up init
+init: docker-down-clear clear assets-clear docker-pull docker-build docker-up init
 test: test
 test-coverage: test-coverage
 test-unit: test-unit
@@ -22,7 +22,7 @@ docker-pull:
 docker-build:
 	docker-compose build
 
-init: composer-install assets-install oauth-keys wait-db migrations fixtures ready assets-dev
+init: composer-install assets-init oauth-keys wait-db migrations fixtures ready
 
 clear:
 	docker run --rm -v ${PWD}/app:/app --workdir=/app alpine rm -f .ready
@@ -30,9 +30,32 @@ clear:
 composer-install:
 	docker-compose run --rm php-cli composer install
 
-assets-install:
+assets-clear:
+	docker run --rm -v ${PWD}/frontend/my-app:/app -w /app alpine sh -c 'rm -rf .ready build'
+
+assets-init: assets-yarn-install assets-ready
+
+assets-yarn-install:
 	docker-compose run --rm node yarn install
-	docker-compose run --rm node npm rebuild node-sass
+
+assets-ready:
+	docker run --rm -v ${PWD}/frontend/my-app:/app -w /app alpine touch .ready
+
+assets-lint:
+	docker-compose run --rm node yarn eslint
+	docker-compose run --rm node yarn stylelint
+
+assets-eslint-fix:
+	docker-compose run --rm node yarn eslint-fix
+
+assets-pretty:
+	docker-compose run --rm node yarn prettier
+
+assets-test:
+	docker-compose run --rm node yarn test --watchAll=false
+
+assets-test-watch:
+	docker-compose run --rm node yarn test
 
 oauth-keys:
 	docker-compose run --rm php-cli mkdir -p var/oauth
