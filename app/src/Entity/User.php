@@ -43,11 +43,6 @@ class User implements UserInterface
     private $email;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\BlogPost", mappedBy="author")
-     */
-    private $posts;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="author")
      */
     private $comments;
@@ -109,14 +104,6 @@ class User implements UserInterface
         $this->email = $email;
 
         return $this;
-    }
-
-    /**
-     * @return Collection
-     */
-    public function getPosts(): Collection
-    {
-        return $this->posts;
     }
 
     /**
