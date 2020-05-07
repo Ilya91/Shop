@@ -2,6 +2,10 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { BASE_URL } from "./config";
+import {Route, Switch} from "react-router";
+import Login from "./Login";
+import { Link } from 'react-router-dom'
+
 const axios = require("axios").default;
 
 axios.defaults.baseURL = BASE_URL;
@@ -31,6 +35,11 @@ function App() {
         >
           Learn React
         </a>
+        <Link to="/login">Login Form</Link>
+        <Switch>
+          <Route path="/login" component={Login} />
+          <Route path="/miss" render={() => (<div>Miss</div>)} />
+        </Switch>
       </header>
     </div>
   );
