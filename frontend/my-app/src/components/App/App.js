@@ -5,6 +5,8 @@ import { BASE_URL } from "../../config";
 import {Route, Switch} from "react-router";
 import ListArticle from "../Article/ListArticle";
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import {blogArticleAdd, blogArticleList} from "../../actions/actions";
 
 const axios = require("axios").default;
 
@@ -14,40 +16,32 @@ axios.defaults.headers.common.Authorization =
 axios.defaults.headers.post["Content-Type"] =
   "application/x-www-form-urlencoded";
 
+const mapStateToProps = state => ({
+  ...state.blogArticleList
+})
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.articles = [
-      {
-        id: 1,
-        title: 'Elon Musk: Tesla worker admitted to sabotage',
-        author: 'By Michael Smith',
-        image: 'img/bg-img/4.jpg'
-      },
-      {
-        id: 2,
-        title: 'Rachel Sm ith breaks down while discussing border crisis',
-        author: 'By Michael Smith',
-        image: 'img/bg-img/5.jpg'
-      }
-    ];
-    axios.get("/api/articles").then(function (response) {
-      console.log(response.data);
-      console.log(response.status);
-      console.log(response.statusText);
-      console.log(response.headers);
-      console.log(response.config);
-    });
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <ListArticle articles={this.articles}/>
-      </div>
-    );
-  }
+const mapDispatchToProps = {
+  blogArticleList,
+  blogArticleAdd
 }
 
-export default App;
+class App extends React.Component {
+  // constructor(props) {
+  //   super(props);
+  //   axios.get("/api/articles").then(function (response) {
+  //     console.log(response.data);
+  //     console.log(response.status);
+  //     console.log(response.statusText);
+  //     console.log(response.headers);
+  //     console.log(response.config);
+  //   });
+  // }
+  componentDidMount() {
+    this.props.blogArticleList();
+  }
+  render() {
+    console.log(this.props);
+    return (<ListArticle articles={this.props.articles}/>);
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App);
