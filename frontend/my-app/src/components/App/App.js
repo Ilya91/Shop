@@ -20,10 +20,10 @@ const mapStateToProps = state => ({
   ...state.blogArticleList
 })
 
-const mapDispatchToProps = {
-  blogArticleList,
-  blogArticleAdd
-}
+const mapDispatchToProps = dispatch => ({
+  blogArticleList: () => dispatch(blogArticleList()),
+  blogArticleAdd: () => dispatch(blogArticleAdd()),
+})
 
 class App extends React.Component {
   // constructor(props) {
@@ -40,7 +40,7 @@ class App extends React.Component {
     this.props.blogArticleList();
   }
   render() {
-    console.log(this.props);
+    console.log(this.props.articles);
     return (<ListArticle articles={this.props.articles}/>);
   }
 }
