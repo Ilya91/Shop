@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Menu from "../Menu/Menu";
+import ListArticles from "../ListArticles";
 
 class Index extends Component {
   render() {
@@ -922,91 +923,92 @@ class Index extends Component {
             </div>
           </div>
         </section>
-        <div className="top-news-area section-padding-100" id="root">
-          <div className="container">
-            <div className="row">
-              <div className="col-12 col-sm-6 col-lg-4">
-                <div className="single-blog-post style-2 mb-5">
-                  <div className="blog-thumbnail">
-                    <a href="#"><img src="img/bg-img/4.jpg" alt=""/></a>
-                  </div>
-                  <div className="blog-content">
-                    <span className="post-date">June 20, 2018</span>
-                    <a href="#" className="post-title">Elon Musk: Tesla worker admitted to sabotage</a>
-                    <a href="#" className="post-author">By Michael Smith</a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-12 col-sm-6 col-lg-4">
-                <div className="single-blog-post style-2 mb-5">
-                  <div className="blog-thumbnail">
-                    <a href="#"><img src="img/bg-img/5.jpg" alt=""/></a>
-                  </div>
-                  <div className="blog-content">
-                    <span className="post-date">June 20, 2018</span>
-                    <a href="#" className="post-title">Rachel Sm ith breaks down while discussing border crisis </a>
-                    <a href="#" className="post-author">By Michael Smith</a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-12 col-sm-6 col-lg-4">
-                <div className="single-blog-post style-2 mb-5">
-                  <div className="blog-thumbnail">
-                    <a href="#"><img src="img/bg-img/6.jpg" alt=""/></a>
-                  </div>
-                  <div className="blog-content">
-                    <span className="post-date">June 20, 2018</span>
-                    <a href="#" className="post-title">Dow falls 287 points as trade war fears escalate</a>
-                    <a href="#" className="post-author">By Michael Smith</a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-12 col-sm-6 col-lg-4">
-                <div className="single-blog-post style-2 mb-5">
-                  <div className="blog-thumbnail">
-                    <a href="#"><img src="img/bg-img/7.jpg" alt=""/></a>
-                  </div>
-                  <div className="blog-content">
-                    <span className="post-date">June 20, 2018</span>
-                    <a href="#" className="post-title">Elon Musk: Tesla worker admitted to sabotage</a>
-                    <a href="#" className="post-author">By Michael Smith</a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-12 col-sm-6 col-lg-4">
-                <div className="single-blog-post style-2 mb-5">
-                  <div className="blog-thumbnail">
-                    <a href="#"><img src="img/bg-img/8.jpg" alt=""/></a>
-                  </div>
-                  <div className="blog-content">
-                    <span className="post-date">June 20, 2018</span>
-                    <a href="#" className="post-title">Rachel Sm ith breaks down while discussing border crisis </a>
-                    <a href="#" className="post-author">By Michael Smith</a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-12 col-sm-6 col-lg-4">
-                <div className="single-blog-post style-2 mb-5">
-                  <div className="blog-thumbnail">
-                    <a href="#"><img src="img/bg-img/9.jpg" alt=""/></a>
-                  </div>
+        <div className="top-news-area section-padding-100">
+          <ListArticles/>
+          {/*<div className="container">*/}
+          {/*  <div className="row">*/}
+          {/*    <div className="col-12 col-sm-6 col-lg-4">*/}
+          {/*      <div className="single-blog-post style-2 mb-5">*/}
+          {/*        <div className="blog-thumbnail">*/}
+          {/*          <a href="#"><img src="img/bg-img/4.jpg" alt=""/></a>*/}
+          {/*        </div>*/}
+          {/*        <div className="blog-content">*/}
+          {/*          <span className="post-date">June 20, 2018</span>*/}
+          {/*          <a href="#" className="post-title">Elon Musk: Tesla worker admitted to sabotage</a>*/}
+          {/*          <a href="#" className="post-author">By Michael Smith</a>*/}
+          {/*        </div>*/}
+          {/*      </div>*/}
+          {/*    </div>*/}
+          {/*    <div className="col-12 col-sm-6 col-lg-4">*/}
+          {/*      <div className="single-blog-post style-2 mb-5">*/}
+          {/*        <div className="blog-thumbnail">*/}
+          {/*          <a href="#"><img src="img/bg-img/5.jpg" alt=""/></a>*/}
+          {/*        </div>*/}
+          {/*        <div className="blog-content">*/}
+          {/*          <span className="post-date">June 20, 2018</span>*/}
+          {/*          <a href="#" className="post-title">Rachel Sm ith breaks down while discussing border crisis </a>*/}
+          {/*          <a href="#" className="post-author">By Michael Smith</a>*/}
+          {/*        </div>*/}
+          {/*      </div>*/}
+          {/*    </div>*/}
+          {/*    <div className="col-12 col-sm-6 col-lg-4">*/}
+          {/*      <div className="single-blog-post style-2 mb-5">*/}
+          {/*        <div className="blog-thumbnail">*/}
+          {/*          <a href="#"><img src="img/bg-img/6.jpg" alt=""/></a>*/}
+          {/*        </div>*/}
+          {/*        <div className="blog-content">*/}
+          {/*          <span className="post-date">June 20, 2018</span>*/}
+          {/*          <a href="#" className="post-title">Dow falls 287 points as trade war fears escalate</a>*/}
+          {/*          <a href="#" className="post-author">By Michael Smith</a>*/}
+          {/*        </div>*/}
+          {/*      </div>*/}
+          {/*    </div>*/}
+          {/*    <div className="col-12 col-sm-6 col-lg-4">*/}
+          {/*      <div className="single-blog-post style-2 mb-5">*/}
+          {/*        <div className="blog-thumbnail">*/}
+          {/*          <a href="#"><img src="img/bg-img/7.jpg" alt=""/></a>*/}
+          {/*        </div>*/}
+          {/*        <div className="blog-content">*/}
+          {/*          <span className="post-date">June 20, 2018</span>*/}
+          {/*          <a href="#" className="post-title">Elon Musk: Tesla worker admitted to sabotage</a>*/}
+          {/*          <a href="#" className="post-author">By Michael Smith</a>*/}
+          {/*        </div>*/}
+          {/*      </div>*/}
+          {/*    </div>*/}
+          {/*    <div className="col-12 col-sm-6 col-lg-4">*/}
+          {/*      <div className="single-blog-post style-2 mb-5">*/}
+          {/*        <div className="blog-thumbnail">*/}
+          {/*          <a href="#"><img src="img/bg-img/8.jpg" alt=""/></a>*/}
+          {/*        </div>*/}
+          {/*        <div className="blog-content">*/}
+          {/*          <span className="post-date">June 20, 2018</span>*/}
+          {/*          <a href="#" className="post-title">Rachel Sm ith breaks down while discussing border crisis </a>*/}
+          {/*          <a href="#" className="post-author">By Michael Smith</a>*/}
+          {/*        </div>*/}
+          {/*      </div>*/}
+          {/*    </div>*/}
+          {/*    <div className="col-12 col-sm-6 col-lg-4">*/}
+          {/*      <div className="single-blog-post style-2 mb-5">*/}
+          {/*        <div className="blog-thumbnail">*/}
+          {/*          <a href="#"><img src="img/bg-img/9.jpg" alt=""/></a>*/}
+          {/*        </div>*/}
 
-                  <div className="blog-content">
-                    <span className="post-date">June 20, 2018</span>
-                    <a href="#" className="post-title">Dow falls 287 points as trade war fears escalate</a>
-                    <a href="#" className="post-author">By Michael Smith</a>
-                  </div>
-                </div>
-              </div>
+          {/*        <div className="blog-content">*/}
+          {/*          <span className="post-date">June 20, 2018</span>*/}
+          {/*          <a href="#" className="post-title">Dow falls 287 points as trade war fears escalate</a>*/}
+          {/*          <a href="#" className="post-author">By Michael Smith</a>*/}
+          {/*        </div>*/}
+          {/*      </div>*/}
+          {/*    </div>*/}
 
-              <div className="col-12">
-                <div className="load-more-button text-center">
-                  <a href="#" className="btn newsbox-btn">Load More</a>
-                </div>
-              </div>
+          {/*    <div className="col-12">*/}
+          {/*      <div className="load-more-button text-center">*/}
+          {/*        <a href="#" className="btn newsbox-btn">Load More</a>*/}
+          {/*      </div>*/}
+          {/*    </div>*/}
 
-            </div>
-          </div>
+          {/*  </div>*/}
+          {/*</div>*/}
         </div>
         <div className="big-add-area mb-100">
           <div className="container-fluid">
