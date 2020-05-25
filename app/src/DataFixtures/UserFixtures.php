@@ -25,6 +25,7 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
+        $this->loadAdmin($manager);
         $this->loadUsers($manager);
     }
 
@@ -42,6 +43,19 @@ class UserFixtures extends Fixture
             $manager->persist($user);
         }
 
+        $manager->flush();
+    }
+
+    private function loadAdmin(ObjectManager $manager)
+    {
+        $user = new User();
+        $user->setEmail('admin@mail.com');
+        $user->setUsername('admin');
+        $password = $this->encoder->encodePassword($user, 'admin');
+        $user->setPassword($password);
+        $user->setName('Admin');
+
+        $manager->persist($user);
         $manager->flush();
     }
 

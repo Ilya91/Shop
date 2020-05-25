@@ -9,7 +9,7 @@ class ListArticles extends Component {
   }
 
   render() {
-    const { children, articles } = this.props
+    const { articles } = this.props
     return (
       <div className="container">
         <div className="row">
@@ -21,7 +21,7 @@ class ListArticles extends Component {
           }
           <div className="col-12">
             <div className="load-more-button text-center">
-              <a href="#" className="btn newsbox-btn">Load More</a>
+              <a href="/" className="btn newsbox-btn">Load More</a>
             </div>
           </div>
 

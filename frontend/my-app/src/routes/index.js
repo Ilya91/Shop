@@ -1,13 +1,13 @@
 import React from 'react'
 import { Route, Switch } from 'react-router'
-import Index from '../components/Home/Index'
 import NoMatch from '../components/NoMatch'
 import Login from "../components/Login/Login";
+import Home from "../components/Home/Home";
 
 const routes = (
   <div>
     <Switch>
-      <Route exact path="/" component={Index} />
+      <Route exact path="/" component={Home} />
       <Route path="/login" component={Login} />
       <Route component={NoMatch} />
     </Switch>
