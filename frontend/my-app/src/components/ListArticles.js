@@ -2,9 +2,11 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { getArticles } from '../actions/articles'
 import Article from "./Article";
+import {requests} from "../agent";
 
 class ListArticles extends Component {
   componentDidMount() {
+    requests.get('/articles').then(response => console.log(response))
     this.props.getArticles();
   }
 
