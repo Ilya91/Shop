@@ -1,13 +1,17 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import { getArticles } from '../actions/articles'
+import { blogArticleListFetch } from '../actions/articles'
 import Article from "./Article";
-import {requests} from "../agent";
 
 class ListArticles extends Component {
+  state = {
+    error: null,
+    isLoaded: false,
+    articles: []
+  }
+
   componentDidMount() {
-    requests.get('/articles').then(response => console.log(response))
-    this.props.getArticles();
+    this.props.blogArticleListFetch();
   }
 
   render() {
@@ -37,7 +41,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getArticles: () => dispatch(getArticles())
+  blogArticleListFetch: () => dispatch(blogArticleListFetch())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListArticles)
