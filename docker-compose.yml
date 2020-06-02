@@ -7,8 +7,10 @@ services:
         ports:
             - "8080:8080"
             - "8081:8081"
+            - "8083:8083"
         depends_on:
             - frontend
+            - admin
             - api
 
     frontend:
@@ -16,6 +18,12 @@ services:
             context: frontend/docker/development/nginx
         depends_on:
             - frontend-node
+
+    admin:
+        build:
+            context: frontend/admin/docker/development/nginx
+        depends_on:
+            - admin-node
     api:
         build:
             context: app/docker
@@ -94,6 +102,21 @@ services:
             context: frontend/docker/development/node
         volumes:
             - ./frontend/my-app:/app
+        command: sh -c "until [ -f .ready ] ; do sleep 1 ; done && yarn start"
+        tty: true
+
+    node-admin:
+        build:
+            context: frontend/docker/development/node
+        volumes:
+            - ./frontend/admin:/app
+        working_dir: /app
+
+    admin-node:
+        build:
+            context: frontend/docker/development/node
+        volumes:
+            - ./frontend/admin:/app
         command: sh -c "until [ -f .ready ] ; do sleep 1 ; done && yarn start"
         tty: true
 

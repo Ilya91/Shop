@@ -32,30 +32,39 @@ composer-install:
 
 assets-clear:
 	docker run --rm -v ${PWD}/frontend/my-app:/app -w /app alpine sh -c 'rm -rf .ready build'
+	docker run --rm -v ${PWD}/frontend/admin:/app -w /app alpine sh -c 'rm -rf .ready build'
 
 assets-init: assets-yarn-install assets-ready
 
 assets-yarn-install:
 	docker-compose run --rm node yarn install
+	docker-compose run --rm node-admin yarn install
 
 assets-ready:
 	docker run --rm -v ${PWD}/frontend/my-app:/app -w /app alpine touch .ready
+	docker run --rm -v ${PWD}/frontend/admin:/app -w /app alpine touch .ready
 
 assets-lint:
 	docker-compose run --rm node yarn eslint
 	docker-compose run --rm node yarn stylelint
+	docker-compose run --rm node-admin yarn eslint
+	docker-compose run --rm node-admin yarn stylelint
 
 assets-eslint-fix:
 	docker-compose run --rm node yarn eslint-fix
+	docker-compose run --rm node-admin yarn eslint-fix
 
 assets-pretty:
 	docker-compose run --rm node yarn prettier
+	docker-compose run --rm node-admin yarn prettier
 
 assets-test:
 	docker-compose run --rm node yarn test --watchAll=false
+	docker-compose run --rm node-admin yarn test --watchAll=false
 
 assets-test-watch:
 	docker-compose run --rm node yarn test
+	docker-compose run --rm node-admin yarn test
 
 oauth-keys:
 	docker-compose run --rm php-cli mkdir -p var/oauth
@@ -77,6 +86,7 @@ ready:
 
 assets-dev:
 	docker-compose run --rm node npm run build
+	docker-compose run --rm node-admin npm run build
 
 test:
 	docker-compose run --rm php-cli php bin/phpunit
