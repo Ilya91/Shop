@@ -21,7 +21,7 @@ services:
 
     admin:
         build:
-            context: frontend/admin/docker/development/nginx
+            context: frontend/docker-admin/docker/development/nginx
         depends_on:
             - admin-node
     api:
