@@ -8,6 +8,6 @@ const responseBody = response => response.body
 export const requests = {
   get: (url) =>
     superagent.get(`${API_ROOT}${url}`).set('accept', 'application/json').then(responseBody),
-  post: (url) =>
-    superagent.post(`${API_ROOT}${url}`)
+  post: (url, body = null) =>
+    superagent.post(`${API_ROOT}${url}`, body).set('accept', 'application/json').then(responseBody),
 }

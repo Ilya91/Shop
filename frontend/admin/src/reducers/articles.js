@@ -1,4 +1,9 @@
-import {BLOG_ARTICLE_LIST_ERROR, BLOG_ARTICLE_LIST_RECEIVED, BLOG_ARTICLE_LIST_REQUEST} from "../actions/articles";
+import {
+  BLOG_ARTICLE_CREATE,
+  BLOG_ARTICLE_LIST_ERROR,
+  BLOG_ARTICLE_LIST_RECEIVED,
+  BLOG_ARTICLE_LIST_REQUEST
+} from "../actions/articles";
 
 const articleReducer = (state = {
   articles: null,
@@ -21,6 +26,12 @@ const articleReducer = (state = {
         ...state,
         isFetching: false,
         articles: null
+      };
+    case BLOG_ARTICLE_CREATE:
+      return {
+        ...state,
+        articles: action.data,
+        isFetching: false
       };
     default:
       return state

@@ -1,41 +1,53 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from 'redux-form'
 import {connect} from "react-redux";
-import {userLoginAttempt} from "../../actions/login";
+import {createNewArticle} from "../../actions/articles";
+import {Button, Card, CardBody, CardFooter, CardHeader, Form, FormGroup, FormText, Input, Label} from "reactstrap";
 
 class ArticlesForm extends Component {
-
-  onSubmit = (values) => {
+  onSubmit = values => {
+    // print the form values to the console
     console.log(values)
+    return this.props.createNewArticle(
+      values.title,
+      values.description,
+      values.author
+    )
   }
   render() {
     const { handleSubmit } = this.props
     return (
-      <form onSubmit={handleSubmit(this.onSubmit())}>
-        <div className="row">
-          <div className="col-lg-6">
-            <div className="form-group">
-              <Field id="username" name="username" component="input" type="text" className="form-control" placeholder="Username"/>
-            </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-lg-6">
-            <div className="form-group">
-              <Field id="password" name="password" component="input" type="password" className="form-control" placeholder="Password"/>
-            </div>
-          </div>
-          <div className="col-12">
-            <button className="btn newsbox-btn mt-30 col-lg-6" type="submit">Send</button>
-          </div>
-        </div>
-      </form>
+        <Card>
+          <CardHeader>
+            <strong>Create</strong> Article
+          </CardHeader>
+          <CardBody>
+            <form onSubmit={handleSubmit(this.onSubmit)} >
+              <FormGroup>
+                <Label htmlFor="title">Title</Label>
+                <Field name="title" component="input" type="text" className="form-control" placeholder="Enter Title.."/>
+              </FormGroup>
+              <FormGroup>
+                <Label htmlFor="description">Description</Label>
+                <Field name="description" component="input" type="text" className="form-control" placeholder="Enter Description.."/>
+              </FormGroup>
+              <FormGroup>
+                <Label htmlFor="author">Author</Label>
+                <Field name="author" component="input" type="text" className="form-control" placeholder="Enter Author.."/>
+              </FormGroup>
+              <CardFooter>
+                <Button type="submit" size="sm" color="primary"><i className="fa fa-dot-circle-o"></i> Submit</Button>
+                <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Reset</Button>
+              </CardFooter>
+            </form>
+          </CardBody>
+        </Card>
     );
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  userLoginAttempt: () => dispatch(userLoginAttempt())
+  createNewArticle: () => dispatch(createNewArticle())
 })
 
 ArticlesForm = reduxForm({
