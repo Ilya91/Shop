@@ -22,9 +22,11 @@ export const listArticlesReceived = (data) => ({
   data
 })
 
-export const createNewArticle = (title, description, author) => {
+export const createNewArticle = (title, authorId, categoryId = 1, description) => {
+  console.log(title, description, authorId);
   return (dispatch) => {
-    return requests.post('/articles', { title, description, author })
+    console.log(title, description, authorId);
+    return requests.post('/articles', { title, authorId, categoryId, description})
       .then(response => dispatch(listArticlesReceived(response)))
       .catch(error => console.log(error))
   }

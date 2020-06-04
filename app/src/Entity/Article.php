@@ -6,7 +6,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(attributes={"maximum_items_per_page"=50})
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
  */
 class Article

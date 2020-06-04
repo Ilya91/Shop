@@ -6,12 +6,12 @@ import {Button, Card, CardBody, CardFooter, CardHeader, Form, FormGroup, FormTex
 
 class ArticlesForm extends Component {
   onSubmit = values => {
-    // print the form values to the console
-    console.log(values)
+    let authorId = parseInt(values.authorId)
     return this.props.createNewArticle(
       values.title,
-      values.description,
-      values.author
+      authorId,
+      1,
+      values.description
     )
   }
   render() {
@@ -33,7 +33,7 @@ class ArticlesForm extends Component {
               </FormGroup>
               <FormGroup>
                 <Label htmlFor="author">Author</Label>
-                <Field name="author" component="input" type="text" className="form-control" placeholder="Enter Author.."/>
+                <Field name="authorId" component="input" type="text" className="form-control" placeholder="Enter Author.."/>
               </FormGroup>
               <CardFooter>
                 <Button type="submit" size="sm" color="primary"><i className="fa fa-dot-circle-o"></i> Submit</Button>
@@ -46,12 +46,11 @@ class ArticlesForm extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  createNewArticle: () => dispatch(createNewArticle())
-})
+const mapDispatchToProps = {
+  createNewArticle
+}
 
 ArticlesForm = reduxForm({
-  // a unique name for the form
   form: 'articles'
 })(ArticlesForm)
 
