@@ -1,4 +1,5 @@
 import React from 'react';
+import ArticleCreate from "./views/Article/ArticleCreate";
 
 const Breadcrumbs = React.lazy(() => import('./views/Base/Breadcrumbs'));
 const Cards = React.lazy(() => import('./views/Base/Cards'));
@@ -24,6 +25,7 @@ const Buttons = React.lazy(() => import('./views/Buttons/Buttons'));
 const Charts = React.lazy(() => import('./views/Charts'));
 const Dashboard = React.lazy(() => import('./views/Dashboard'));
 const Article = React.lazy(() => import('./views/Article'));
+const ArticlesCreate = React.lazy(() => import('./views/Article/ArticleCreate'));
 const CoreUIIcons = React.lazy(() => import('./views/Icons/CoreUIIcons'));
 const Flags = React.lazy(() => import('./views/Icons/Flags'));
 const FontAwesome = React.lazy(() => import('./views/Icons/FontAwesome'));
@@ -43,7 +45,8 @@ const routes = [
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
   { path: '/theme/colors', name: 'Colors', component: Colors },
-  { path: '/articles', name: 'Articles', component: Article },
+  { path: '/articles', exact: true, name: 'Articles', component: Article },
+  { path: '/articles/add', name: 'Create Article', component: ArticlesCreate },
   { path: '/theme/typography', name: 'Typography', component: Typography },
   { path: '/base', exact: true, name: 'Base', component: Cards },
   { path: '/base/cards', name: 'Cards', component: Cards },

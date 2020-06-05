@@ -3,8 +3,13 @@ import { Field, reduxForm } from 'redux-form'
 import {connect} from "react-redux";
 import {createNewArticle} from "../../actions/articles";
 import {Button, Card, CardBody, CardFooter, CardHeader, Form, FormGroup, FormText, Input, Label} from "reactstrap";
+import {history} from "../../configureStore";
+import { Redirect } from 'react-router'
 
 class ArticlesForm extends Component {
+  state = {
+      fireRedirect: false
+  }
   onSubmit = values => {
     let authorId = parseInt(values.authorId)
     return this.props.createNewArticle(
@@ -12,10 +17,13 @@ class ArticlesForm extends Component {
       authorId,
       1,
       values.description
-    )
+    ).then(() => {
+      this.setState({ fireRedirect: true })
+    });
   }
   render() {
     const { handleSubmit } = this.props
+    const { fireRedirect } = this.state
     return (
         <Card>
           <CardHeader>
@@ -40,6 +48,9 @@ class ArticlesForm extends Component {
                 <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Reset</Button>
               </CardFooter>
             </form>
+            {fireRedirect && (
+              <Redirect to='/articles'/>
+            )}
           </CardBody>
         </Card>
     );

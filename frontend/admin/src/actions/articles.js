@@ -27,7 +27,7 @@ export const createNewArticle = (title, authorId, categoryId = 1, description) =
   return (dispatch) => {
     console.log(title, description, authorId);
     return requests.post('/articles', { title, authorId, categoryId, description})
-      .then(response => dispatch(listArticlesReceived(response)))
+      .then(response => dispatch(addArticle(response)))
       .catch(error => console.log(error))
   }
 }
@@ -37,7 +37,7 @@ export const blogArticleListFetch = () => {
   return (dispatch) => {
     dispatch(getArticles());
     return requests.get('/articles')
-      .then(response => dispatch(addArticle(response)))
+      .then(response => dispatch(listArticlesReceived(response)))
       .catch(error => dispatch(listArticlesError(error)))
   }
 }
