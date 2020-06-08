@@ -33,10 +33,10 @@ export const createNewArticle = (title, authorId, categoryId = 1, description) =
 }
 
 
-export const blogArticleListFetch = () => {
+export const blogArticleListFetch = (page) => {
   return (dispatch) => {
     dispatch(getArticles());
-    return requests.get('/articles')
+    return requests.get(`/articles?page=1`)
       .then(response => dispatch(listArticlesReceived(response)))
       .catch(error => dispatch(listArticlesError(error)))
   }

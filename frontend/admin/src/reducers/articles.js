@@ -7,7 +7,9 @@ import {
 
 const articleReducer = (state = {
   articles: null,
-  isFetching: false
+  isFetching: false,
+  pagination: null,
+  total: null
 }, action) => {
   switch (action.type) {
     case BLOG_ARTICLE_LIST_REQUEST:
@@ -18,14 +20,17 @@ const articleReducer = (state = {
     case BLOG_ARTICLE_LIST_RECEIVED:
       return {
         ...state,
-        articles: action.data,
-        isFetching: false
+        articles: action.data['hydra:member'],
+        isFetching: false,
+        pagination: action.data['hydra:view'],
+        total: action.data['hydra:totalItems']
       };
     case BLOG_ARTICLE_LIST_ERROR:
       return {
         ...state,
         isFetching: false,
-        articles: null
+        articles: null,
+        pagination: null
       };
     case BLOG_ARTICLE_CREATE:
       return {

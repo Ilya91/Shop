@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import {Badge, Card, CardBody, CardHeader, Pagination, PaginationItem, PaginationLink, Table} from "reactstrap";
+import {Card, CardBody, CardHeader, Table} from "reactstrap";
 import { Link } from 'react-router-dom'
 import {blogArticleListFetch} from '../../actions/articles'
 import { connect } from 'react-redux'
 import ArticleItem from "./ArticleItem";
+import PaginationCustom from "./Pagination";
 
 class Index extends Component {
   state = {
@@ -15,12 +16,21 @@ class Index extends Component {
   setTitleFef = (titleRef) => console.log(titleRef)
 
   componentDidMount() {
-    this.props.blogArticleListFetch();
+    this.props.blogArticleListFetch(1);
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.match.params.page !== this.getParamPage()){
+
+    }
+  }
+
+  getParamPage(){
+    return Number(this.props.match.params.page) || 1;
   }
 
   render() {
-    const { articles } = this.props
-    console.log(articles);
+    const { articles, pagination } = this.props
     return (
       <div className="col-12 col-sm-6 col-lg-12">
         <Card>
@@ -49,26 +59,7 @@ class Index extends Component {
               }
               </tbody>
             </Table>
-            <Pagination>
-              <PaginationItem>
-                <PaginationLink previous tag="button"></PaginationLink>
-              </PaginationItem>
-              <PaginationItem active>
-                <PaginationLink tag="button">1</PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink tag="button">2</PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink tag="button">3</PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink tag="button">4</PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink next tag="button"></PaginationLink>
-              </PaginationItem>
-            </Pagination>
+            <PaginationCustom/>
           </CardBody>
         </Card>
       </div>

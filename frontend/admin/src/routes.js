@@ -46,6 +46,7 @@ const routes = [
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
   { path: '/theme/colors', name: 'Colors', component: Colors },
   { path: '/articles', exact: true, name: 'Articles', component: Article },
+  { path: '/articles/:page', name: 'Articles', component: Article },
   { path: '/articles/add', name: 'Create Article', component: ArticlesCreate },
   { path: '/theme/typography', name: 'Typography', component: Typography },
   { path: '/base', exact: true, name: 'Base', component: Cards },
