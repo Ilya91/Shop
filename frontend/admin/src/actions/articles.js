@@ -4,6 +4,7 @@ export const BLOG_ARTICLE_LIST_REQUEST = 'BLOG_ARTICLE_LIST_REQUEST'
 export const BLOG_ARTICLE_LIST_RECEIVED = 'BLOG_ARTICLE_LIST_RECEIVED'
 export const BLOG_ARTICLE_LIST_ERROR = 'BLOG_ARTICLE_LIST_ERROR'
 export const BLOG_ARTICLE_CREATE = 'BLOG_ARTICLE_CREATE'
+export const BLOG_ARTICLE_LIST_SET_PAGE = 'BLOG_ARTICLE_LIST_SET_PAGE'
 export const getArticles = () => ({
   type: BLOG_ARTICLE_LIST_REQUEST
 })
@@ -22,6 +23,11 @@ export const listArticlesReceived = (data) => ({
   data
 })
 
+export const listArticlesSetPage = (page) => ({
+  type: BLOG_ARTICLE_LIST_SET_PAGE,
+  page
+})
+
 export const createNewArticle = (title, authorId, categoryId = 1, description) => {
   console.log(title, description, authorId);
   return (dispatch) => {
@@ -33,10 +39,11 @@ export const createNewArticle = (title, authorId, categoryId = 1, description) =
 }
 
 
-export const blogArticleListFetch = (page) => {
+export const blogArticleListFetch = (page = 1) => {
   return (dispatch) => {
     dispatch(getArticles());
-    return requests.get(`/articles?page=1`)
+    console.log(page);
+    return requests.get(`/articles?page=${page}`)
       .then(response => dispatch(listArticlesReceived(response)))
       .catch(error => dispatch(listArticlesError(error)))
   }

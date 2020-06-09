@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {Card, CardBody, CardHeader, Table} from "reactstrap";
 import { Link } from 'react-router-dom'
-import {blogArticleListFetch} from '../../actions/articles'
+import {blogArticleListFetch, listArticlesSetPage} from '../../actions/articles'
 import { connect } from 'react-redux'
 import ArticleItem from "./ArticleItem";
 import PaginationCustom from "./Pagination";
@@ -16,21 +16,17 @@ class Index extends Component {
   setTitleFef = (titleRef) => console.log(titleRef)
 
   componentDidMount() {
-    this.props.blogArticleListFetch(1);
+    this.props.blogArticleListFetch();
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.match.params.page !== this.getParamPage()){
-
+    if (prevProps.currentPage !== this.props.currentPage){
+      this.props.blogArticleListFetch(this.props.currentPage);
     }
   }
 
-  getParamPage(){
-    return Number(this.props.match.params.page) || 1;
-  }
-
   render() {
-    const { articles, pagination } = this.props
+    const { articles, listArticlesSetPage, currentPage } = this.props
     return (
       <div className="col-12 col-sm-6 col-lg-12">
         <Card>
@@ -59,7 +55,7 @@ class Index extends Component {
               }
               </tbody>
             </Table>
-            <PaginationCustom/>
+            <PaginationCustom currentPage={currentPage} pageCount={5} setPage={listArticlesSetPage}/>
           </CardBody>
         </Card>
       </div>
@@ -71,8 +67,8 @@ const mapStateToProps = state => ({
 })
 
 
-const mapDispatchToProps = dispatch => ({
-  blogArticleListFetch: () => dispatch(blogArticleListFetch())
-})
+const mapDispatchToProps = {
+  blogArticleListFetch, listArticlesSetPage
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index)
