@@ -1,5 +1,5 @@
 import React from 'react';
-import ArticleCreate from "./views/Article/ArticleCreate";
+import ArticleView from "./views/Article/ArticleView";
 
 const Breadcrumbs = React.lazy(() => import('./views/Base/Breadcrumbs'));
 const Cards = React.lazy(() => import('./views/Base/Cards'));
@@ -48,6 +48,7 @@ const routes = [
   { path: '/articles', exact: true, name: 'Articles', component: Article },
   { path: '/articles/:page', name: 'Articles', component: Article },
   { path: '/articles/add', name: 'Create Article', component: ArticlesCreate },
+  { path: '/article/:id', name: 'View Article', component: ArticleView },
   { path: '/theme/typography', name: 'Typography', component: Typography },
   { path: '/base', exact: true, name: 'Base', component: Cards },
   { path: '/base/cards', name: 'Cards', component: Cards },
