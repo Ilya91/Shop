@@ -13,7 +13,7 @@ class Index extends Component {
     articles: []
   }
 
-  setTitleFef = (titleRef) => console.log(titleRef)
+  setTitleFef = (titleRef) => titleRef
 
   componentDidMount() {
     this.props.blogArticleListFetch();
@@ -33,7 +33,7 @@ class Index extends Component {
           <CardHeader>
             <span className='float-left'><i className="fa fa-align-justify"></i> List of Articles</span>
             <div className="mb-3 mb-xl-0 col-sm-4 col-md-2 col-xl">
-              <Link to='articles/add' className="btn btn-primary float-right" role="button">Create Article</Link>
+              <Link to='/articles/add' className="btn btn-primary float-right" role="button">Create Article</Link>
             </div>
           </CardHeader>
           <CardBody>
