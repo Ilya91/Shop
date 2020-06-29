@@ -3,10 +3,18 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource(attributes={"maximum_items_per_page"=50})
+ * @ApiResource(
+ *     attributes={"maximum_items_per_page"=50},
+ *     denormalizationContext={
+ *          "groups"={"article"}
+ *     }
+ *     )
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
  */
 class Article
@@ -48,9 +56,18 @@ class Article
      */
     private $image_id;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Image")
+     * @ORM\JoinTable()
+     * @ApiSubresource()
+     * @Groups("article")
+     */
+    private $images;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
+        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -114,6 +131,21 @@ class Article
     public function getImageId(): ?int
     {
         return $this->image_id;
+    }
+
+    public function getImages(): \Doctrine\Common\Collections\Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image)
+    {
+        $this->images->add($image);
+    }
+
+    public function removeImage(Image $image)
+    {
+        $this->images->removeElement($image);
     }
 
     public function setImageId(?int $image_id): self
