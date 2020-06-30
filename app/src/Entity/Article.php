@@ -13,7 +13,17 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     attributes={"maximum_items_per_page"=50},
  *     denormalizationContext={
  *          "groups"={"article"}
- *     }
+ *     },
+ *     itemOperations={
+ *         "get"={
+ *             "normalization_context"={
+ *                 "groups"={"get-blog-post-with-author"}
+ *             }
+ *          },
+ *         "put"={
+ *             "access_control"="is_granted('ROLE_EDITOR') or (is_granted('ROLE_WRITER') and object.getAuthor() == user)"
+ *         }
+ *     },
  *     )
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
  */
@@ -60,7 +70,7 @@ class Article
      * @ORM\ManyToMany(targetEntity="App\Entity\Image")
      * @ORM\JoinTable()
      * @ApiSubresource()
-     * @Groups("article")
+     * @Groups({"article", "get-blog-post-with-author"})
      */
     private $images;
 

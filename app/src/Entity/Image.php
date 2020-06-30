@@ -6,6 +6,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use App\Controller\UploadController;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Class Image
@@ -36,6 +37,9 @@ use App\Controller\UploadController;
  *             },
  *
  *      }
+ *     },
+ *       denormalizationContext={
+ *          "groups"={"article"}
  *     }
  * )
  */
@@ -55,6 +59,7 @@ class Image
 
     /**
      * @ORM\Column(nullable=true)
+     * @Groups({"article", "get-blog-post-with-author"})
      */
     private $url;
 
