@@ -36,14 +36,12 @@
         "symfony/validator": "*",
         "symfony/web-link": "*",
         "symfony/yaml": "*",
-        "vich/uploader-bundle": "^1.14",
         "vimeo/psalm": "^3.9"
     },
     "require-dev": {
         "behat/behat": "^3.6",
         "doctrine/doctrine-fixtures-bundle": "^3.3",
         "overtrue/phplint": "^1.2",
-        "roave/security-advisories": "dev-master",
         "squizlabs/php_codesniffer": "^3.5",
         "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.0",

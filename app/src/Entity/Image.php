@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
+//use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use App\Controller\UploadController;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -12,7 +12,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * Class Image
  * @package App\Entity
  * @ORM\Entity()
- * @Vich\Uploadable()
  * @ApiResource(
  *  collectionOperations={
  *     "get",
@@ -52,9 +51,6 @@ class Image
      */
     private $id;
 
-    /**
-     * @Vich\UploadableField(mapping="articles", fileNameProperty="url")
-     */
     private $file;
 
     /**
