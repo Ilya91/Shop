@@ -15,12 +15,15 @@ class IndexController extends AbstractController
 {
 
     /**
-    * @Route("/")
+    * @Route("/test")
     */
     public function index()
     {
-        $result = 'index page';
-        return new Response($result);
+        $text = '<p>`Make sure` your cat is **sitting** `purrrfectly` still </p>🤣';
+        return $this->render('index/test.html.twig',
+            [
+                'text' => $text
+            ]);
 
     }
 
